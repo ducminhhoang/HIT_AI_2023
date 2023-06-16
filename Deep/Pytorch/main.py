@@ -162,12 +162,12 @@ losses_test , accs_test = test(test_loader)
 # trực quan hóa loss test, acc test
 fg, ax1 = plt.subplots(1, 2)
 
-ax1[0].set_title('LOSS TRAIN')
+ax1[0].set_title('LOSS TEST')
 ax1[0].set_xlabel('Epoch')
 ax1[0].set_ylabel('Loss')
 ax1[0].plot(losses_test, 'ro-')
 
-ax1[1].set_title('Accuracy')
+ax1[1].set_title('Accuracy TEST')
 ax1[1].set_xlabel('Epoch')
 ax1[1].set_ylabel('ACC_mean')
 ax1[1].plot(accs_test, 'bo-')
