@@ -1,5 +1,5 @@
 from typing import Union
-
+import uvicorn
 from fastapi import FastAPI, File, UploadFile #import class FastAPI() từ thư viện fastapi
 from pydantic import BaseModel #thu vien giup tu tao doi tuong (neu can)
 from fastapi.responses import FileResponse #
@@ -53,6 +53,9 @@ async def getImage(fileContent: UploadFile = File(...), fileStyle: UploadFile = 
     print(path)
     return FileResponse(path)
 
+
+if __name__ == "__apii__":
+    uvicorn.run("apii:app", host="0.0.0.0", port=8000, reload=True)
 # uvicorn apii:app --host 0.0.0.0 --port 8000 --reload
 # http://127.0.0.1:8000/
 
