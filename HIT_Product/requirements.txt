@@ -85,9 +85,6 @@ starlette==0.27.0
 sympy==1.11.1
 threadpoolctl==3.1.0
 tldextract==3.4.0
-torch==2.0.1+cu117
-torchaudio==2.0.2+cu117
-torchvision==0.15.2+cu117
 tornado==6.3.1
 tqdm==4.65.0
 traitlets==5.9.0
