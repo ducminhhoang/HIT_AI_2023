@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Style Transfer App</title>
     <link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/54365408?s=280&v=4" />
+
     <style>
         *{
             margin: 0;
@@ -130,7 +131,7 @@
     <header>
         <div class="logo">
             <img class="img-logo" src="https://avatars.githubusercontent.com/u/54365408?s=280&v=4" alt="">
-            <p>Pic Trans</p>
+            <p>Neroul Style Transfer</p>
         </div>
         <div id="menu">
             <li><a href="">Home</a></li>
@@ -142,9 +143,18 @@
     <div id="content">
         <h1>Upload Images</h1>
         <form id="upload-form">
-            <input type="file" id="image1" accept="image/*">
-            <input type="file" id="image2" accept="image/*">
-            <button type="submit">Generate</button>
+            <div class="mb-3">
+                <lalbel for = "image1" class="form-label">Content Image: </lalbel>
+                <input type="file" class="form-control" id="image1" accept="image/*" name="image1" required>
+                <label for="image2" class="form-label">Style Image: </label>
+                <select id="image2" name="image2">
+                    <option value="">--Please choose an image--</option>
+                </select><br><br>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Transfer</button>
+            </div>
         </form>
         <div id="generate">
             <img id="result-image" src="">
@@ -152,6 +162,27 @@
     </div>
     <script>
         // Add your JavaScript code here
+        async function getName() {
+            const response = await fetch("/getNameStyle");
+            const data = await response.json();
+            const select = document.getElementById("image2");
+            const images = data.images;
+            for (const image of images) {
+                const option = document.createElement("option");
+                option.value = image.name;
+                option.textContent = image.name;
+                select.appendChild(option);
+            }
+        }
+
+        getName();
+
+        const select = document.getElementById("image2");
+        select.addEventListener("change", (event) => {
+            const imageName = select.value;
+            console.log(imageName);
+        });
+
         const uploadForm = document.getElementById('upload-form');
         const resultImage = document.getElementById('result-image');
 
@@ -159,23 +190,31 @@
             event.preventDefault();
 
             const image1 = document.getElementById('image1').files[0];
-            const image2 = document.getElementById('image2').files[0];
+            const image2 = document.getElementById('image2').value;
 
-            const formData = new FormData();
-            formData.append('fileContent', image1);
-            formData.append('fileStyle', image2);
+            if (image1 && image2){
+                const formData = new FormData();
+                formData.append('fileContent', image1);
+                formData.append('fileStyle', image2);
 
-            const response = await fetch('http://127.0.0.1:8000/upload', {
-                method: 'POST',
-                body: formData
-            });
+                try{
+                    const response = await fetch('http://127.0.0.1:8000/upload', {
+                        method: 'POST',
+                        body: formData
+                    });
 
-            if (response.ok) {
-                const blob = await response.blob();
-                resultImage.src = URL.createObjectURL(blob);
-            } else {
-                console.error('Upload failed');
+                    if (response.ok) {
+                        const blob = await response.blob();
+                        resultImage.src = URL.createObjectURL(blob);
+                    } else {
+                        console.error('Upload failed');
+                    }
+                } catch (error) {
+                    console.error(error);
+                }
+
             }
+
         });
     </script>
 </body>
