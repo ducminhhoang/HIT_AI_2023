@@ -37,19 +37,19 @@ if content_file is not None:
 
 
     # Cho phép người dùng chọn kiểu ảnh từ danh sách các kiểu ảnh có sẵn
-    style_options = [f for f in os.listdir("model") if f.endswith(".pth")]
+    style_options = [f for f in os.listdir(os.path.join("HIT_Product", "model")) if f.endswith(".pth")]
     style_name = st.selectbox("Select Style", style_options)
 
     # Nếu người dùng đã chọn kiểu ảnh
     if style_name:
         # Hiển thị ảnh kiểu
         style_img = style_name[:style_name.find(".pth")] + ".jpg"
-        style_image = Image.open(os.path.join("imgs", "styles", style_img))
+        style_image = Image.open(os.path.join("HIT_Product", "imgs", "styles", style_img))
         st.image(style_image, caption="Style Image", use_column_width=True)
 
         fileName_rand = uuid.uuid4()
         filename = f"{fileName_rand}.jpg"
-        content_image.save(os.path.join("imgs", "content_user", filename))
+        content_image.save(os.path.join("HIT_Product", "imgs", "content_user", filename))
 
         code = f"python test_main.py  --model_load_path model\{style_name} --test_content imgs\content_user\{filename} --imsize 256 --output imgs\generate\{filename}".split()
         process = subprocess.run(code, stdout=subprocess.PIPE)
