@@ -17,7 +17,7 @@ def saveFile(content, filename):
 
 def removeDir(dir: str):
     for filename in os.listdir(dir):
-       file_path = os.path.join("HIT_Product", IMAGEDIR, generate_dir, filename)
+       file_path = os.path.join(dir, filename)
 
        os.remove(file_path)
 
@@ -33,7 +33,7 @@ if content_file is not None:
     content_image = Image.open(content_file)
     st.image(content_image, caption="Content Image", use_column_width=True)
     removeDir(os.path.join("HIT_Product", IMAGEDIR, generate_dir))
-    removeDir(f"{IMAGEDIR}content_user")
+    removeDir(os.path.join("HIT_Product", IMAGEDIR, "content_user"))
 
 
     # Cho phép người dùng chọn kiểu ảnh từ danh sách các kiểu ảnh có sẵn
