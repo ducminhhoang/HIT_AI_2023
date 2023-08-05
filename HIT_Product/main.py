@@ -15,7 +15,14 @@ def saveFile(content, filename):
         f.write(content)
 
 
+def removeDir(dir: str):
+    for filename in os.listdir(dir):
+       file_path = os.path.join(IMAGEDIR, generate_dir, filename)
+
+       os.remove(file_path)
+
 st.set_page_config(page_title='Hello',page_icon="📷", layout="wide")
+
 
 
 st.title("Style Transfer")
@@ -25,10 +32,8 @@ if content_file is not None:
     # Hiển thị ảnh nội dung
     content_image = Image.open(content_file)
     st.image(content_image, caption="Content Image", use_column_width=True)
-    for filename in os.listdir(f"{IMAGEDIR}{generate_dir}"):
-       file_path = os.path.join(IMAGEDIR, generate_dir, filename)
-
-       os.remove(file_path)
+    removeDir(f"{IMAGEDIR}{generate_dir}")
+    removeDir(f"{IMAGEDIR}content_user")
 
 
     # Cho phép người dùng chọn kiểu ảnh từ danh sách các kiểu ảnh có sẵn
@@ -39,7 +44,7 @@ if content_file is not None:
     if style_name:
         # Hiển thị ảnh kiểu
         style_img = style_name[:style_name.find(".pth")] + ".jpg"
-        style_image = Image.open(os.path.join("imgs", "styles", f"{style_img[: len(style_img) - 7]}", style_img))
+        style_image = Image.open(os.path.join("imgs", "styles", style_img))
         st.image(style_image, caption="Style Image", use_column_width=True)
 
         fileName_rand = uuid.uuid4()
