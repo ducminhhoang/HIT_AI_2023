@@ -32,7 +32,7 @@ if content_file is not None:
     # Hiển thị ảnh nội dung
     content_image = Image.open(content_file)
     st.image(content_image, caption="Content Image", use_column_width=True)
-    removeDir(f"{IMAGEDIR}{generate_dir}")
+    removeDir(f"HIT_Product\{IMAGEDIR}{generate_dir}")
     removeDir(f"{IMAGEDIR}content_user")
 
 
