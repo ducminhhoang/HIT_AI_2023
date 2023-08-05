@@ -3,6 +3,7 @@ from PIL import Image
 import os
 import subprocess
 import uuid
+import sys
 
 
 IMAGEDIR = "imgs/" #tao thu muc images để lưu ảnh lấy được và ảnh generate
