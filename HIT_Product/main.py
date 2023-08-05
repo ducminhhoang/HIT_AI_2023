@@ -51,10 +51,10 @@ if content_file is not None:
         filename = f"{fileName_rand}.jpg"
         content_image.save(os.path.join("HIT_Product", "imgs", "content_user", filename))
 
-        code = f"python test_main.py  --model_load_path model\{style_name} --test_content imgs\content_user\{filename} --imsize 256 --output imgs\generate\{filename}".split()
+        code = f"python test_main.py  --model_load_path HIT_Product\model\{style_name} --test_content HIT_Product\imgs\content_user\{filename} --imsize 256 --output HIT_Product\imgs\generate\{filename}".split()
         process = subprocess.run(code, stdout=subprocess.PIPE)
         # print(process.decode("utf-8"))
         st.text(process.stdout.decode("utf-8"))
 
-        result_image = Image.open(os.path.join("imgs", "generate", filename))
+        result_image = Image.open(os.path.join("HIT_Product", "imgs", "generate", filename))
         st.image(result_image, caption="Result Image", use_column_width=True)
