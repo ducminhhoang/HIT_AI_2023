@@ -17,8 +17,8 @@ railroad==0.5.0
 Sphinx==7.1.2
 streamlit==1.25.0
 toml==0.10.2
-torch==2.0.1+cu117
-torchvision==0.15.2+cu117
+torch==2.0.1
+torchvision==0.15.2
 tornado==6.3.1
 trove_classifiers==2023.7.6
 truststore==0.7.0
