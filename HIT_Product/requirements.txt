@@ -1,6 +1,4 @@
 Cython==3.0.0
-dl==0.1.0
-docutils==0.20.1
 fastapi==0.100.1
 HTMLParser==0.0.2
 ipython==8.13.2
@@ -13,11 +11,9 @@ mock==5.1.0
 numpy==1.24.3
 opencv_contrib_python==4.8.0.74
 opencv_python==4.6.0.66
-Pillow==9.3.0
 Pillow==10.0.0
 protobuf==4.23.4
 pydantic==2.1.1
-pyOpenSSL==23.0.0
 pyOpenSSL==23.2.0
 railroad==0.5.0
 Sphinx==7.1.2
@@ -30,4 +26,3 @@ trove_classifiers==2023.7.6
 truststore==0.7.0
 urllib3_secure_extra==0.1.0
 uvicorn==0.23.2
-xmlrpclib==1.0.1
