@@ -35,7 +35,7 @@ if content_file is not None:
     st.image(content_image, caption="Content Image", use_column_width=True)
     removeDir(os.path.join("HIT_Product", IMAGEDIR, generate_dir))
     removeDir(os.path.join("HIT_Product", IMAGEDIR, "content_user"))
-
+    
 
     # Cho phép người dùng chọn kiểu ảnh từ danh sách các kiểu ảnh có sẵn
     style_options = [f for f in os.listdir(os.path.join("HIT_Product", "model")) if f.endswith(".pth")]
@@ -51,7 +51,8 @@ if content_file is not None:
         fileName_rand = uuid.uuid4()
         filename = f"{fileName_rand}.jpg"
         content_image.save(os.path.join("HIT_Product", "imgs", "content_user", filename))
-
+        code = f"apt-get update && apt-get install ffmpeg libsm6 libxext6 -y".split()
+        process = subprocess.run(code, stdout=subprocess.PIPE)
         code = f"{sys.executable} HIT_Product/test_main.py  --model_load_path HIT_Product/model/{style_name} --test_content HIT_Product/imgs/content_user/{filename} --imsize 256 --output HIT_Product/imgs/generate/{filename}".split()
         process = subprocess.run(code, stdout=subprocess.PIPE)
         # print(process.decode("utf-8"))
