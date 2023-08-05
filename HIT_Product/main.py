@@ -17,7 +17,7 @@ def saveFile(content, filename):
 
 def removeDir(dir: str):
     for filename in os.listdir(dir):
-       file_path = os.path.join(IMAGEDIR, generate_dir, filename)
+       file_path = os.path.join("HIT_Product", IMAGEDIR, generate_dir, filename)
 
        os.remove(file_path)
 
