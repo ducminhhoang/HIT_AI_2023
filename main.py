@@ -60,7 +60,7 @@ with col2:
             # Hiển thị mẫu
             content_sample = Image.open(os.path.join("imgs", "sample", "content.jpg"))
             generate_sample = Image.open(os.path.join("imgs", "sample", style_img))
-            st.image(content_image, caption="Content Sample", use_column_width=True)
+            st.image(content_sample, caption="Content Sample", use_column_width=True)
             st.image(generate_sample, caption="Sample", use_column_width=True)
 
 
