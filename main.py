@@ -69,7 +69,6 @@ if False not in check:
     content_image.save(os.path.join("imgs", "content_user", "tmp.jpg"))
     if st.button("Chạy"):
         code = f"{sys.executable} test_main.py  --model_load_path model/{filepath} --test_content imgs/content_user/tmp.jpg --imsize 256 --output imgs/generate/tmp.jpg".split()
-        st.text(code)
         process = subprocess.run(code, stdout=subprocess.PIPE)
         st.text(process.stdout.decode("utf-8"))
         result_image = Image.open(os.path.join("imgs", "generate", "tmp.jpg"))
