@@ -53,7 +53,7 @@ with col2:
         filepath = "_".join(style_name.split(" ")) + ".pth"
         if chose == 'Origin Style':
             # Hiển thị ảnh kiểu
-            style_image = Image.open(os.path.join("imgs", "styles", style_img[:-7], style_img))
+            style_image = Image.open(os.path.join("imgs", "styles", style_img))
             st.image(style_image, caption="Style Image", use_column_width=True)
             listpath = listpath[style_options.index(style_name)]
         else:
@@ -68,7 +68,7 @@ if False not in check:
     st.title("Result")
     content_image.save(os.path.join("imgs", "content_user", "tmp.jpg"))
     if st.button("Chạy"):
-        code = f"python test_main.py  --model_load_path model\\{filepath} --test_content imgs\\content_user\\tmp.jpg --imsize 256 --output imgs\\generate\\tmp.jpg".split()
+        code = f"{sys.executable} test_main.py  --model_load_path model/{filepath} --test_content imgs/content_user/tmp.jpg --imsize 256 --output imgs/generate/tmp.jpg".split()
         st.text(code)
         process = subprocess.run(code, stdout=subprocess.PIPE)
         st.text(process.stdout.decode("utf-8"))
