@@ -66,6 +66,7 @@ with col2:
 
 if False not in check:
     st.title("Result")
+    content_image = content_image.covert('RGB')
     content_image.save(os.path.join("imgs", "content_user", "tmp.jpg"))
     if st.button("Chạy"):
         code = f"{sys.executable} test_main.py  --model_load_path model/{filepath} --test_content imgs/content_user/tmp.jpg --imsize 256 --output imgs/generate/tmp.jpg".split()
