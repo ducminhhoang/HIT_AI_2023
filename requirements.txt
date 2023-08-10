@@ -14,7 +14,7 @@ protobuf==4.23.4
 pydantic==2.1.1
 pyOpenSSL==23.2.0
 railroad==0.5.0
-Sphinx==7.1.2
+Sphinx<=7.1.2
 streamlit==1.25.0
 toml==0.10.2
 torch==2.0.1
