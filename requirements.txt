@@ -12,6 +12,7 @@ opencv-contrib-python-headless==4.8.0.74
 Pillow<10.0.0
 protobuf==4.23.4
 pydantic==2.1.1
+python-multipart<=0.0.6
 pyOpenSSL==23.2.0
 railroad==0.5.0
 Sphinx<=7.1.2
