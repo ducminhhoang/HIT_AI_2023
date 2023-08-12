@@ -3,6 +3,7 @@ from PIL import Image
 import os
 import subprocess
 import sys
+import time
 
 IMAGEDIR = "imgs/"  # tao thu muc images để lưu ảnh lấy được và ảnh generate
 styles_dir = "styles/"
@@ -69,10 +70,15 @@ if False not in check:
     content_image = content_image.convert('RGB')
     content_image.save(os.path.join("imgs", "content_user", "tmp.jpg"))
     if st.button("Chạy"):
-        code = f"{sys.executable} test_main.py  --model_load_path model/{filepath} --test_content imgs/content_user/tmp.jpg --imsize 256 --output imgs/generate/tmp.jpg".split()
-        process = subprocess.run(code, stdout=subprocess.PIPE)
-        st.text(process.stdout.decode("utf-8"))
-        result_image = Image.open(os.path.join("imgs", "generate", "tmp.jpg"))
+        result_image = ""
+        start = time.time()
+        with st.spinner("Đang chờ..."):
+            code = f"{sys.executable} test_main.py  --model_load_path model/{filepath} --test_content imgs/content_user/tmp.jpg --imsize 256 --output imgs/generate/tmp.jpg".split()
+            process = subprocess.run(code, stdout=subprocess.PIPE)
+            st.text(process.stdout.decode("utf-8"))
+            result_image = Image.open(os.path.join("imgs", "generate", "tmp.jpg"))
+        end = time.time()
+        st.write(f"Thời gian chạy: {(start-end):.2f} giây")
         st.image(result_image, caption="Result Image", use_column_width="auto")
 
         with open(os.path.join("imgs", "generate", "tmp.jpg"), 'rb') as f:
