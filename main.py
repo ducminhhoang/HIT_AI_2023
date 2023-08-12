@@ -78,7 +78,7 @@ if False not in check:
             st.text(process.stdout.decode("utf-8"))
             result_image = Image.open(os.path.join("imgs", "generate", "tmp.jpg"))
         end = time.time()
-        st.write(f"Thời gian chạy: {(start-end):.2f} giây")
+        st.write(f"Thời gian chạy: {(end-start):.2f} giây")
         st.image(result_image, caption="Result Image", use_column_width='auto')
         with open(os.path.join("imgs", "generate", "tmp.jpg"), 'rb') as f:
             st.download_button(
