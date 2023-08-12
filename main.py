@@ -54,14 +54,14 @@ with col2:
         if chose == 'Origin Style':
             # Hiển thị ảnh kiểu
             style_image = Image.open(os.path.join("imgs", "styles", style_img))
-            st.image(style_image, caption="Style Image", use_column_width=True)
+            st.image(style_image, caption="Style Image", use_column_width="auto")
             listpath = listpath[style_options.index(style_name)]
         else:
             # Hiển thị mẫu
             content_sample = Image.open(os.path.join("imgs", "sample", "content.jpg"))
             generate_sample = Image.open(os.path.join("imgs", "sample", style_img))
-            st.image(content_sample, caption="Content Sample", use_column_width=True)
-            st.image(generate_sample, caption="Sample", use_column_width=True)
+            st.image(content_sample, caption="Content Sample", use_column_width="auto")
+            st.image(generate_sample, caption="Sample", use_column_width="auto")
 
 
 if False not in check:
@@ -73,7 +73,7 @@ if False not in check:
         process = subprocess.run(code, stdout=subprocess.PIPE)
         st.text(process.stdout.decode("utf-8"))
         result_image = Image.open(os.path.join("imgs", "generate", "tmp.jpg"))
-        st.image(result_image, caption="Result Image", use_column_width=False)
+        st.image(result_image, caption="Result Image", use_column_width="auto")
 
         with open(os.path.join("imgs", "generate", "tmp.jpg"), 'rb') as f:
             st.download_button(
