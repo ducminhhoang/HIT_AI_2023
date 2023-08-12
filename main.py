@@ -73,7 +73,7 @@ if False not in check:
         process = subprocess.run(code, stdout=subprocess.PIPE)
         st.text(process.stdout.decode("utf-8"))
         result_image = Image.open(os.path.join("imgs", "generate", "tmp.jpg"))
-        st.image(result_image, caption="Result Image", use_column_width=True)
+        st.image(result_image, caption="Result Image", use_column_width="auto")
 
         with open(os.path.join("imgs", "generate", "tmp.jpg"), 'rb') as f:
             st.download_button(
